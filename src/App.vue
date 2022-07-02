@@ -12,12 +12,14 @@
 <label for="one">one</label>
 
 <input type="radio" v-model="picked" value="a" />
-
+<br>
+<YesNo />
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
 import { api } from "@/utils/http/request";
+import YesNo from './YesNo.vue'
 const count = ref(0);
 count.value = api();
 
