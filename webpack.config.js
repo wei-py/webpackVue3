@@ -1,6 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
+// const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   // 入口
@@ -30,7 +30,7 @@ module.exports = {
       title: 'webpack-vue3',
       template: './public/index.html'
     }),
-    new VueLoaderPlugin()
+    // new VueLoaderPlugin()
   ],
   // loader
   module: {
@@ -45,13 +45,26 @@ module.exports = {
           }
         }
       },
+      // {
+      //   test: /\.vue/,
+      //   loader: 'vue-loader',
+      //   options: {
+      //     reactivityTransform: true
+      //   }
+      // },
       {
-        test: /\.vue/,
-        loader: 'vue-loader',
-        options: {
-          reactivityTransform: true
-        }
-      },
+				test: /\.svelte$/,
+				use: {
+					loader: 'svelte-loader',
+					options: {
+						compilerOptions: {
+							dev: true
+						},
+						emitCss: false,
+						hotReload: true
+					}
+				}
+			},
       {
         test: /\.s[ac]ss/,
         use: ['style-loader', 'css-loader', 'sass-loader']
